@@ -520,7 +520,7 @@ def test_req(request, slurm_system: SlurmSystem, partial_tr: partial[TestRun]) -
                 test_template_name="ai-dynamo",
                 repo=GitRepo(
                     url="https://github.com/ai-dynamo/dynamo.git",
-                    commit="f7e468c7e8ff0d1426db987564e60572167e8464",
+                    commit="a49702e4432e7fa43cbc88175bddb31604340f19",
                     installed_path=slurm_system.install_path,
                 ),
                 cmd_args=AIDynamoCmdArgs(
