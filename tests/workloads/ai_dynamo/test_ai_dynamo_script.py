@@ -135,6 +135,21 @@ def test_omitted_nodes_per_worker_preserves_one_worker_per_node() -> None:
     assert lines[-1] == "1|3|1|2"
 
 
+def test_disaggregation_modes_are_derived_from_worker_roles() -> None:
+    lines = run_script_functions(
+        """
+        prefill_args["--disaggregation-mode"]=decode
+        decode_args["--disaggregation-mode"]=prefill
+        _set_worker_disaggregation_modes
+        printf '%s|%s\n' \
+          "${prefill_args["--disaggregation-mode"]}" \
+          "${decode_args["--disaggregation-mode"]}"
+        """
+    )
+
+    assert lines[-1] == "prefill|decode"
+
+
 def test_runtime_selects_dynamo_131_compatible_communication_planes() -> None:
     lines = run_script_functions(
         """
